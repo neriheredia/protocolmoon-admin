@@ -1,5 +1,6 @@
 import React from "react";
 import "./navbar.scss";
+import { useDispatch, useSelector } from "react-redux";
 // import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 // import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 // import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlined";
@@ -8,6 +9,8 @@ import "./navbar.scss";
 // import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.user);
+  console.log(user)
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -33,10 +36,15 @@ const Navbar = () => {
           <div className="item">
             <ListOutlinedIcon className="icon" />
           </div> */}
+            {
+              user.currentUser.fullName && 
+              <div className="item">
+                {user.currentUser.fullName}
+              </div>
+            }
           <div className="item">
             <img
-              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              alt=""
+              src={user.currentUser.profilePhoto? user.currrentUser.profilePhoto : "/default_profile_photo.svg"}
               className="avatar"
             />
           </div>
