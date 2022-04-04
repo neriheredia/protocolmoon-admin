@@ -7,7 +7,7 @@ import Chart from "../../components/chart/Chart";
 import Featured from "../../components/featured/Featured";
 import Table from "../../components/table/Table";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllOrders } from "../../redux/apiCalls/ordersCall/orderCall";
+import { getAllOrders } from "../../redux/apiCalls/orderCall";
 
 const Home = () => {
   const dispatch = useDispatch();
