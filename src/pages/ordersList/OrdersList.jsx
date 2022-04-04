@@ -3,7 +3,7 @@ import "./ordersList.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllOrders } from "../../redux/apiCalls/ordersCall/orderCall";
+import { getAllOrders } from "../../redux/apiCalls/orderCall";
 import DatatableOrders from "../../components/datatableOrders/DatatableOrders";
 
 const OrdersList = () => {
