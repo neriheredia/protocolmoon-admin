@@ -26,7 +26,9 @@ const List = ({ orders }) => {
           </TableRow>
         </TableHead>
         <TableBody>
+
           {orders?.map((order) => (
+
             <TableRow key={order._id}>
               <TableCell className="tableCell">{order._id}</TableCell>
               <TableCell className="tableCell">{order.type}</TableCell>
