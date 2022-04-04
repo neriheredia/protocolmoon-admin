@@ -1,10 +1,11 @@
-import requestApiProtocol from "../../../settings/requestMethod";
+import requestApiProtocol from "../../settings/requestMethod";
 import {
   ordersStart,
   ordersSuccess,
   ordersFailure,
-} from "../../reducers/ordesReducers";
+} from "../reducers/ordesReducers";
 
+//TRAE TODAS LAS ORDENES
 export const getAllOrders = async (dispatch) => {
   dispatch(ordersStart());
   try {
