@@ -12,11 +12,23 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
+import { logoutUser } from "../../redux/apiCalls/loginCall";
+import { useDispatch } from "react-redux";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const dispatchRedux = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logoutUser(dispatchRedux).then((res) => {
+      window.location.replace("/login");
+    });
+  };
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -59,8 +71,13 @@ const Sidebar = () => {
             <span>Profile</span>
           </li>
           <li>
-            <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <ExitToAppIcon style={{ cursor: "pointer" }} className="icon" />
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={(e) => handleLogout(e)}
+            >
+              Logout
+            </span>
           </li>
         </ul>
       </div>
