@@ -14,14 +14,15 @@ const Login = () => {
       alert("Login Failed");
     }
   };
-
-  return <div>
-    <h1>Login</h1>
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <input type="text" id="username" placeholder="Username" />
-      <input type="password" id="password" placeholder="Password" />
-      <button type="submit">Login</button>
-    </form>
+  return <div className="container">
+    <div className="form">
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <button type="submit" className="btn">Login</button>
+        <p class="message">Not registered yet?<a href="http://localhost:4000/register"> Sign in </a></p>
+      </form>
+    </div>
   </div>;
 };
 
