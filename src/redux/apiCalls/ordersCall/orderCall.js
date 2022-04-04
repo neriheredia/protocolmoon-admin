@@ -5,6 +5,7 @@ import {
   ordersFailure,
 } from "../../reducers/ordesReducers";
 
+//TRAE TODAS LAS ORDENES
 export const getAllOrders = async (dispatch) => {
   dispatch(ordersStart());
   try {

@@ -1,39 +1,63 @@
+import { format } from "timeago.js";
+
 export const userColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "_id", headerName: "ID", width: 220 },
   {
-    field: "user",
-    headerName: "User",
-    width: 230,
+    field: "profilePhoto",
+    headerName: "Profile",
+    width: 70,
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
-          {params.row.username}
+          <img
+            className="cellImg"
+            src={
+              params.row.profilePhoto ||
+              "http://panel.guerreroyroaconsultores.com/inc/fle/abog/abog_06e75ab7666cb5bb2dfbee89a9c0c693ab94debf.jpg"
+            }
+            alt="avatar"
+          />
         </div>
+      );
+    },
+  },
+  {
+    field: "username",
+    headerName: "Username",
+    width: 150,
+    renderCell: (params) => {
+      return (
+        <div className="cellDate">{params.row.username || "Username"}</div>
       );
     },
   },
   {
     field: "email",
     headerName: "Email",
-    width: 230,
+    width: 190,
   },
-
   {
-    field: "age",
-    headerName: "Age",
+    field: "followers",
+    headerName: "Followers",
     width: 100,
+    renderCell: (params) => {
+      return <div className="cellDate">{params.row.followers.length}</div>;
+    },
   },
   {
-    field: "status",
-    headerName: "Status",
-    width: 160,
+    field: "followings",
+    headerName: "Followings",
+    width: 100,
     renderCell: (params) => {
-      return (
-        <div className={`cellWithStatus ${params.row.status}`}>
-          {params.row.status}
-        </div>
-      );
+      return <div className="cellDate">{params.row.followings.length}</div>;
+    },
+  },
+  {
+    field: "createdAt",
+    headerName: "Created",
+    width: 100,
+    renderCell: (params) => {
+      return <div className="cellDate">{format(params.row.createdAt)}</div>;
     },
   },
 ];
