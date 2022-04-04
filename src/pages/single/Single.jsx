@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import Chart from "../../components/chart/Chart";
 import List from "../../components/table/Table";
+import { useLocation } from "react-router-dom";
+import { getUserById } from "../../redux/apiCalls/usersCall/userByIdCall";
+import { useDispatch, useSelector } from "react-redux";
 
 const Single = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userById.user);
+  const location = useLocation();
+  const userId = location.pathname.split("/").reverse()[0];
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getUserById(dispatch, userId).then((response) => setIsLoading(false));
+  }, [dispatch, userId]);
+
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <div className="single">
       <Sidebar />
@@ -17,15 +31,18 @@ const Single = () => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                src={
+                  user.profilePhoto ||
+                  "http://panel.guerreroyroaconsultores.com/inc/fle/abog/abog_06e75ab7666cb5bb2dfbee89a9c0c693ab94debf.jpg"
+                }
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Jane Doe</h1>
+                <h1 className="itemTitle">{user.username || "Username"}</h1>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>
-                  <span className="itemValue">janedoe@gmail.com</span>
+                  <span className="itemValue">{user.email}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Phone:</span>
@@ -43,9 +60,6 @@ const Single = () => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="right">
-            <Chart aspect={3 / 1} title="User Spending ( Last 6 Months)" />
           </div>
         </div>
         <div className="bottom">
